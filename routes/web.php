@@ -86,3 +86,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 
         // :: -> Scope resolution operator
     });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

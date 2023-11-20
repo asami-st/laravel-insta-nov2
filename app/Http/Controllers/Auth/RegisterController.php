@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -65,30 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name'      => $data['name'],
-            'email'     => $data['email'],
-            'password'  => Hash::make($data['password']),   
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
-
-        $details = [
-            'name'      => $user->name,
-            'app_url'   => config('app.url')
-        ];
-
-        Mail::send('users.emails.register-confirmation', $details, function($message) use($user) {
-            $message
-                ->from(config('mail.from.address'), config('app.name'))
-                ->to($user->email, $user->name)
-                ->subject('Thank you for registering to Kredo IG App');
-        });
-
-        return $user;
-
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
     }
 }
