@@ -121,6 +121,14 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <button class="btn shadow-none nav-link" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis pt-2"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="{{ route('password.edit', Auth::user()->id) }}" class="dropdown-item text-danger">Change Password</a>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>

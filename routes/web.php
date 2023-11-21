@@ -9,11 +9,13 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\PasswordController;
 
 # Admin users
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\CategoriesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,9 @@ use App\Http\Controllers\Admin\CategoriesController;
         Route::get('profile/{id}/followers', [ProfileController::class, 'followers'])->name('profile.followers');
         Route::get('profile/{id}/following', [ProfileController::class, 'following'])->name('profile.following');
 
+        # Password
+        Route::get('/password/{id}/edit', [PasswordController::class, 'edit'])->name('password.edit');
+
         # Like/Unlike
         Route::post('/like/{post_id}/store', [LikeController::class, 'store'])->name('like.store');
         Route::delete('/like/{post_id}/destroy', [LikeController::class, 'destroy'])->name('like.destroy');
@@ -84,9 +89,10 @@ use App\Http\Controllers\Admin\CategoriesController;
             Route::get('/people', [HomeController::class, 'search'])->name('search');
         });
 
+
         // :: -> Scope resolution operator
     });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
