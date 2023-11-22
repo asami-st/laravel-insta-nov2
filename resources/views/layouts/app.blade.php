@@ -146,7 +146,7 @@
                     {{-- http:://localhost/admiin ---> true --}}
 
                     @if (request()->is('admin/*'))
-                        <div class="col-xs-3">
+                        <div class="col-md-3 mb-3">
                             <div class="list-group">
                                 <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users') ? 'active':'' }}">
                                     <i class="fa-solid fa-users"></i> Users
@@ -161,7 +161,7 @@
                         </div>
                     @endif
 
-                    <div class="col-xs-9">
+                    <div class="col-md-9">
                         @yield('content')
                     </div>
                 </div>
