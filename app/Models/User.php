@@ -77,5 +77,9 @@ class User extends Authenticatable
         # using the (where('follower_id', Auth::user()->id)) ---- checking if that id exists (exists())
     }
 
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
 
 }

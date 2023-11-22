@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row gx-5">
-        <div class="col-8 bg-light">
+        <div class="col-md-8 bg-light">
             @forelse ($home_posts as $post)
                 <div class="card mb-4">
                     {{-- title.blade.php --}}
@@ -21,10 +21,10 @@
                 </div>
             @endforelse
         </div>
-        <div class="col-4 bg-light">
+        <div class="col-md-4 bg-light">
             {{-- Profile Overview --}}
             <div class="row align-items-center mb-5 bg-white shadow-sm rounded-3 py-3">
-                <div class="col-auto">
+                <div class="col-md-auto">
                     <a href="{{ route('profile.show', Auth::user()->id) }}">
                         @if (Auth::user()->avatar)
                             <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="rounded-circle avatar-md">
@@ -33,7 +33,7 @@
                         @endif
                     </a>
                 </div>
-                <div class="col ps-0">
+                <div class="col-md ps-0">
                     <a href="{{ route('profile.show', Auth::user()->id) }}" class="text-decoration-none text-secondary text-dark fw-bold">{{ Auth::user()->name }}</a>
                     <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
                 </div>

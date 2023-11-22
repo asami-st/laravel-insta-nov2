@@ -14,13 +14,16 @@
         }
         .scrollable{
             overflow-y: scroll;
-            max-height: 150px;
+            width: 300px;
+            /* height: 400px; */
+            max-height: 400px;
         }
+
     </style>
     <div class="row border shadow">
         <div class="col p-0 border-end">
             {{-- $post -> Post Controller -> home.blade.php -> body.blade.php -> show.blade.php --}}
-            <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="w-100">
+            <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="post-image w-100">
         </div>
         <div class="col-4 px-0 bg-white">
             <div class="card border-0">
@@ -62,7 +65,7 @@
                                     <form action="{{ route('follow.destroy', $post->user->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                    <button type="submit" class="dropdown-item text-danger">UnFollow</button>
+                                    <button type="submit" class="dropdown-item text-secondary">Following</button>
                                 @else
                                     <form action="{{ route('follow.store', $post->user->id) }}" method="post">
                                         @csrf

@@ -106,9 +106,12 @@
                                         @else
                                             <i class="fa-solid fa-circle-user"></i> Profile
                                         @endif
-
                                     </a>
-
+                                    <hr>
+                                    {{-- Likes --}}
+                                    <a href="{{ route('like.index', Auth::user()->id) }}" class="dropdown-item"><i class="fa-solid fa-heart"></i> Likes</a>
+                                    {{-- Change Password --}}
+                                    <a href="{{ route('password.edit', Auth::user()->id) }}" class="dropdown-item"><i class="fa-solid fa-lock"></i> Password</a>
                                     {{-- Logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -121,20 +124,17 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                                <button class="btn shadow-none nav-link" data-bs-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis pt-2"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="{{ route('password.edit', Auth::user()->id) }}" class="dropdown-item text-danger">Change Password</a>
-                                </div>
-                            </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
+        {{-- Changing Password Message --}}
+        @if(session('status'))
+            <div class="alert alert-primary fw-bold">
+                <div class="container">{{ session('status') }}</div>
+            </div>
+        @endif
         <main class="py-5">
             <div class="container">
                 <div class="row justify-content-center">
@@ -146,7 +146,7 @@
                     {{-- http:://localhost/admiin ---> true --}}
 
                     @if (request()->is('admin/*'))
-                        <div class="col-3">
+                        <div class="col-xs-3">
                             <div class="list-group">
                                 <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users') ? 'active':'' }}">
                                     <i class="fa-solid fa-users"></i> Users
@@ -161,7 +161,7 @@
                         </div>
                     @endif
 
-                    <div class="col-9">
+                    <div class="col-xs-9">
                         @yield('content')
                     </div>
                 </div>

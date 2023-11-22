@@ -44,4 +44,6 @@ class Post extends Model
         return $this->likes()->where('user_id', Auth::user()->id)->exists();
         // If the ID of the AUTH user exists in the likes table, then that confirms that that user already like the post
     }
+
+
 }

@@ -3,16 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
     private $like;
+    private $user;
+    private $post;
 
-    public function __construct(Like $like){
+    public function __construct(Like $like, User $user, Post $post){
         $this->like = $like;
+        $this->user = $user;
+        $this->post = $post;
     }
+
+    public function index($id){
+        $user = $this->user->findOrFail($id);
+        $likes = $user->likes;
+
+        $liked_posts = [];
+        foreach ($likes as $like) {
+            $liked_posts[] = $like->post;
+        }
+
+        return view('users.likes.index')
+                ->with('liked_posts', $liked_posts);
+    }
+
+
 
     public function store($post_id){
         $this->like->user_id = Auth::user()->id;        // user who liked the post

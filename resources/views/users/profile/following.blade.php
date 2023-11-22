@@ -33,7 +33,7 @@
                         <form action="{{ route('follow.destroy', $following->following_id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="dropdown-item text-danger">UnFollow</button>
+                            <button type="submit" class="dropdown-item text-secondary">Following</button>
                         </form>
                     @else
                         <form action="{{ route('follow.store', $following->following_id) }}" method="post">

@@ -55,8 +55,10 @@ use App\Http\Controllers\Admin\CategoriesController;
 
         # Password
         Route::get('/password/{id}/edit', [PasswordController::class, 'edit'])->name('password.edit');
+        Route::patch('/password/{id}/update', [PasswordController::class, 'update'])->name('password.update');
 
         # Like/Unlike
+        Route::get('/like/{id}/index', [LikeController::class, 'index'])->name('like.index');
         Route::post('/like/{post_id}/store', [LikeController::class, 'store'])->name('like.store');
         Route::delete('/like/{post_id}/destroy', [LikeController::class, 'destroy'])->name('like.destroy');
 

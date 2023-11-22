@@ -11,7 +11,7 @@
             <div class="col-auto">
                 <h2 class="display mb-0">{{ $user->name }}</h2>
             </div>
-            <div class="col-auto p-2">
+            <div class="col-auto">
                 @if (Auth::user()->id === $user->id)
                     <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
                 @else
