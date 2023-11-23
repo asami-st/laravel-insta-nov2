@@ -15,63 +15,17 @@ class FollowController extends Controller
         $this->follow = $follow;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    // make follow
     public function store($id)
     {
-        //
         $this->follow->follower_id = Auth::user()->id;
         $this->follow->following_id = $id;
         $this->follow->save();
 
-        // return redirect()->back();
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Follow $follow)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Follow $follow)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Follow $follow)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    // stop following
     public function destroy($id)
     {
         $this->follow

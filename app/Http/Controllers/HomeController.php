@@ -37,20 +37,6 @@ class HomeController extends Controller
         return view('users.home')
                 ->with('home_posts', $home_posts)
                 ->with('suggested_users', $suggested_users);
-
-
-        // $all_users = User::all();
-        // $following_id = Auth::user()->following()->pluck('following_id')->toArray();
-        // $following_id[] = Auth::user()->id;
-        // $all_posts = $this->post->whereIn('user_id', $following_id)->latest()->get();
-        // // The same as "SELECT * FROM posts ORDER BY created_at DESC"
-
-        // $suggestions = User::whereNotIn('id', $following_id)->get();
-
-        // return view('users.home')
-        //         ->with('all_posts', $all_posts)
-        //         ->with('all_users', $all_users)
-        //         ->with('suggestions', $suggestions);
     }
 
     private function getHomePosts()
@@ -78,8 +64,6 @@ class HomeController extends Controller
             }
         }
 
-
-        // return $suggested_users;
         return array_slice($suggested_users, 0, 5);
         /*
            array_slice(x, y, z)
@@ -91,8 +75,28 @@ class HomeController extends Controller
 
     public function search(Request $request){
         $users = $this->user->where('name', 'like', '%' . $request->search . '%')->get();
+
+        if ($request->ajax()) {
+            return response()->json($users);
+        }
+
         return view('users.search')
                 ->with('users', $users)
                 ->with('search', $request->search);
+    }
+
+    public function getAllSuggestedUsers()
+    {
+        $user_id = Auth::user()->id;
+
+        $all_suggested_users = $this->user
+            ->where('id', '!=', $user_id)
+            ->whereDoesntHave('followers', function ($query) use ($user_id) {
+                $query->where('follower_id', $user_id);
+            })
+            ->paginate(5);
+
+        return view('users.suggestions')
+                ->with('all_suggested_users', $all_suggested_users);
     }
 }

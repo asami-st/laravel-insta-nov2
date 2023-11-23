@@ -18,7 +18,7 @@ class PostController extends Controller
         $this->category = $category;
     }
 
-    # This method is going to retrieve all the categories in categories table and display the categories into the create.blade.php
+    /* This method is going to retrieve all the categories in categories table and display the categories into the create.blade.php */
     public function create(){
         $all_categories = $this->category->all();
         // The same as "SELECT * FROM categories"
@@ -26,7 +26,7 @@ class PostController extends Controller
         return view('users.posts.create')->with('all_categories', $all_categories);
     }
 
-    # This method is use to insert post details into post table
+    /* This method is use to insert post details into post table */
     public function store(Request $request){
         # 1. Validate the first
         $request->validate([
@@ -82,7 +82,7 @@ class PostController extends Controller
         return view('users.posts.show')->with('post', $post);
     }
 
-    // edit method is use to display the edit.blade.php
+    /* edit method is use to display the edit.blade.php */
     public function edit($id)
     {
         //category 1,3,5
@@ -108,7 +108,7 @@ class PostController extends Controller
                 ->with('selected_categories', $selected_categories);
     }
 
-    //update method is use to do the actual update of the resource
+    /* update method is use to do the actual update of the resource */
     public function update(Request $request, $id)
     {
         # 1. Validate the data first
@@ -145,17 +145,12 @@ class PostController extends Controller
         return redirect()->route('post.show', $id);
     }
 
-    # Activity - destroy
-    # 1. Create the destroy method
-    # 2. Create the route
-    # 3. check the file where you should use the route
-
+    
     public function destroy($id)
     {
         $post = $this->post->findOrFail($id);
         $post->forceDelete(); // this will enable to regular user to force delete / totally delete his/her own post
 
-        // return redirect()->route('index');
         return redirect()->back();
     }
 }

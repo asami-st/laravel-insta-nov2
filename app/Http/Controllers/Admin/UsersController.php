@@ -24,7 +24,6 @@ class UsersController extends Controller
     }
 
     public function activate($id){
-        // $this->user->withTrashed()->findOrFail($id)->restore();
         $this->user->onlyTrashed()->findOrFail($id)->restore();
         return redirect()->back();
     }

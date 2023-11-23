@@ -43,8 +43,10 @@ class LikeController extends Controller
         return redirect()->back();                      // return to the previous page
     }
 
-    # Unlike/Destroy
-    # This method will destroy/or remove the likes details in the likes table
+    /*
+        # Unlike/Destroy
+        # This method will destroy/or remove the likes details in the likes table
+    */
     public function destroy($post_id){
         $this->like
                 ->where('user_id', Auth::user()->id)    // user who liked the post

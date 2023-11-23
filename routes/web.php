@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\CategoriesController;
     #logged in users can access the route inside the group
     Route::group(['middleware' => 'auth'], function(){
         Route::get('/', [HomeController::class, 'index'])->name('index');
+        Route::get('/suggestions', [HomeController::class, 'getAllSuggestedUsers'])->name('suggestions');
 
         Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
         Route::post('/post/store', [PostController::class, 'store'])->name('post.store');

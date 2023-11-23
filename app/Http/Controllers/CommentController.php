@@ -15,6 +15,7 @@ class CommentController extends Controller
         $this->comment = $comment;
     }
 
+    //store comment
     public function store(Request $request, $post_id){
         # 1. Validate the data first
         $request->validate(
@@ -37,14 +38,10 @@ class CommentController extends Controller
 
     }
 
+    //destroy comment
     public function destroy($id){
         $this->comment->destroy($id);
 
         return redirect()->back();
     }
-
-    # 1. Create a destroy method
-    # 2. Create the for that
-    # 3. use the route in comments and show blade file to delete the comment
-    # 4. return the view to the previous page
 }

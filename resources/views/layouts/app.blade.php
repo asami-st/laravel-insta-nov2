@@ -19,6 +19,9 @@
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -41,7 +44,8 @@
                         @if (request()->is('admin/*'))
                             <ul class="navbar-nav ms-auto">
                                 <form action="{{ route('search') }}" style="width: 300px">
-                                    <input type="search" name="search" class="form-control form-control-sm" placeholder="Search...">
+                                    <input type="search" name="search" id="search-user" class="form-control form-control-sm" placeholder="Search...">
+                                    <div id="search-results" class="list-group position-absolute" style="width:300px; display:none; z-index: 1000;"></div>
                                 </form>
                             </ul>
                         @endif
@@ -168,5 +172,6 @@
             </div>
         </main>
     </div>
+    <script src="{{ asset('build/assets/search-ea33f3f1.js') }}"></script>
 </body>
 </html>

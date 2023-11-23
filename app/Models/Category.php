@@ -9,9 +9,9 @@ class Category extends Model
 {
     use HasFactory;
 
-    # Use this method to get the categories under each specific post
-    # one to many method relationship
-    # post has 
+    /* Use this method to get the categories under each specific post
+     one to many method relationship
+     post has */
     public function categoryPost()
     {
         return $this->hasMany(categoryPost::class);

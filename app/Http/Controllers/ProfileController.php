@@ -53,7 +53,6 @@ class ProfileController extends Controller
             [
                 'avatar'       => 'mimes:jpeg,jpg,png,gif|max:1048',
                 'name'         => 'required|min:1|max:50',
-                // 'email'        => ['required', 'email','max:50', Rule::unique('users')->ignore(Auth::id())],
                 'email'        => 'required|email|max:50|unique:users,email,' . Auth::user()->id,
                 'introduction' => 'nullable|max:100'
             ],
@@ -74,10 +73,8 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->introduction = $request->introduction;
-
         $user->save();
 
-        // return redirect()->route('profile.show', $user->id);
         return redirect()->route('profile.show', Auth::user()->id);
     }
 }
