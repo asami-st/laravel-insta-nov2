@@ -40,7 +40,7 @@ $(document).ready(function() {
                 e.preventDefault();
                 if (selectedUser <= 0) {
                     selectedUser = -1;
-                    items.removeClass('active');// back to inpu
+                    items.removeClass('active');// back to input
                 } else {
                     selectedUser--;
                     items.removeClass('active');

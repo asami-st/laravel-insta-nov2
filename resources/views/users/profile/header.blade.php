@@ -15,18 +15,26 @@
                 @if (Auth::user()->id === $user->id)
                     <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
                 @else
-                    @if ($user->isFollowed())
-                        <form action="{{ route('follow.destroy', $user->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-secondary btn-sm fw-bold">Following</button>
-                        </form>
-                    @else
-                        <form action="{{ route('follow.store', $user->id) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-sm fw-bold">Follow</button>
-                        </form>
-                    @endif
+                    <div class="row">
+                        <div class="col">
+                            @if ($user->isFollowed())
+                            <form action="{{ route('follow.destroy', $user->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-secondary btn-sm fw-bold">Following</button>
+                            </form>
+                        @else
+                            <form action="{{ route('follow.store', $user->id) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm fw-bold">Follow</button>
+                            </form>
+                        @endif
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('message.show', $user->id) }}" class=""><i class="fa-solid fa-comment-dots text-dark icon-sm"></i></a>
+                        </div>
+                    </div>
+
 
                 @endif
             </div>

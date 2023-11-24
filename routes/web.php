@@ -10,12 +10,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\MessageController;
 
 # Admin users
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\CategoriesController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -63,9 +63,15 @@ use App\Http\Controllers\Admin\CategoriesController;
         Route::post('/like/{post_id}/store', [LikeController::class, 'store'])->name('like.store');
         Route::delete('/like/{post_id}/destroy', [LikeController::class, 'destroy'])->name('like.destroy');
 
-        #follow
+        # follow
         Route::post('/follow/{id}', [FollowController::class, 'store'])->name('follow.store');
         Route::delete('/unfollow/{id}', [FollowController::class, 'destroy'])->name('follow.destroy');
+
+        # Message
+        Route::get('/message/{id}', [MessageController::class, 'index'])->name('message.index');
+        Route::get('/messages/{id}', [MessageController::class, 'show'])->name('message.show');
+        Route::post('/messages/{id}/send', [MessageController::class, 'send'])->name('message.send');
+
 
 
         Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){

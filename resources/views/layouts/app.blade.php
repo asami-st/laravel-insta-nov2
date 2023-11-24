@@ -77,6 +77,11 @@
                                 <a href="{{route('post.create')}}" class="nav-link"><i class="fa-solid fa-circle-plus text-dark icon-sm"></i></a>
                             </li>
 
+                            {{-- Message --}}
+                            <li class="nav-item" title="Create Post">
+                                <a href="{{ route('message.index', Auth::user()->id) }}" class="nav-link"><i class="fa-solid fa-comment-dots text-dark icon-sm"></i></a>
+                            </li>
+
                             {{-- Accouont --}}
                             <li class="nav-item dropdown">
 
@@ -133,12 +138,7 @@
                 </div>
             </div>
         </nav>
-        {{-- Changing Password Message --}}
-        @if(session('status'))
-            <div class="alert alert-primary fw-bold">
-                <div class="container">{{ session('status') }}</div>
-            </div>
-        @endif
+
         <main class="py-5">
             <div class="container">
                 <div class="row justify-content-center">

@@ -8,6 +8,12 @@
         <form action="{{ route('password.update', Auth::user()->id) }}" method="post" class="bg-white shadow rounded-3 p-5">
             @csrf
             @method('PATCH')
+            {{-- Changing Password Message --}}
+            @if(session('status'))
+                <div class="alert alert-primary fw-bold">
+                    <div class="container">{{ session('status') }}</div>
+                </div>
+            @endif
             <div class="mb-3">
                 <h2 class="h3 fw-light text-muted">Change Password</h2>
                 <span class="text-muted"><i class="fa-solid fa-user"></i> {{Auth::user()->name}}</span>

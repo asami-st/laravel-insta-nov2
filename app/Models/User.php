@@ -74,5 +74,10 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    // get messages that user reseived
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+
 
 }
